@@ -8,6 +8,7 @@ public class Main {
 		
 		Scanner scanner = new Scanner(System.in);
 		int age, km;
+		boolean flessibile; 
 		
 
 		try {
@@ -15,10 +16,12 @@ public class Main {
 			km = scanner.nextInt();
 			System.out.println("La tua età?");
 			age = scanner.nextInt();
+			System.out.println("Biglietto flessibile? Immetti True per Si, o False per No");
+			flessibile = scanner.nextBoolean();
 			
-			Biglietto biglietto = new Biglietto(km, age);
+			Biglietto biglietto = new Biglietto(km, age, flessibile);
 			System.out.println(biglietto.calcolaPrezzo());
-		
+			System.out.println(biglietto.calcolaDataScadenza());
 		} catch(Exception e) {
 			System.out.println("Error, inserisci un nuovo input");
 		}

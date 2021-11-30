@@ -1,6 +1,7 @@
 package org.generation.italy;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Biglietto {
 	
@@ -9,16 +10,22 @@ public class Biglietto {
 	static final BigDecimal COSTO_KM = new BigDecimal ("0.21");
 	static final BigDecimal SCONTO_OVER = new BigDecimal ("0.6");
 	static final BigDecimal SCONTO_UNDER = new BigDecimal ("0.8");
+	static final int NORMAL = 30;
+	static final int FLESSIBILE = 90;
 	
 	///ATTRIBUTI///
 	
 	private int km;
 	private int age;
+	private boolean flessibile;
+	private LocalDate date;
 	
 	///COSTRUTTORE///
 	
-	public Biglietto(int km, int age) throws Exception {
-	
+	public Biglietto(int km, int age, boolean flessibile) throws Exception {
+		
+		this.date = LocalDate.now();
+		this.flessibile = flessibile;
 		this.km = km;
 		this.age = age;
 		
@@ -75,7 +82,19 @@ public class Biglietto {
 	}
 	
 	public BigDecimal calcolaPrezzo() {
-		return calcolaSconto().multiply(BigDecimal.valueOf(km));
+		if(flessibile) {
+			return calcolaSconto().multiply(BigDecimal.valueOf(km).multiply(BigDecimal.valueOf(1.10)));
+		} else {
+			return calcolaSconto().multiply(BigDecimal.valueOf(km));
+		}
+	}
+	
+	public LocalDate calcolaDataScadenza() {
+		if(flessibile) {
+			return date.plusDays(FLESSIBILE);
+		} else {
+			return date.plusDays(NORMAL);
+		}
 	}
 }
 
