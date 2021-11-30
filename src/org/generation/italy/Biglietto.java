@@ -2,7 +2,7 @@ package org.generation.italy;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+//Gruppo 1
 public class Biglietto {
 	
 	///COSTANTI///
