@@ -7,8 +7,8 @@ public class Biglietto {
 	///COSTANTI///
 	
 	static final BigDecimal COSTO_KM = new BigDecimal ("0.21");
-	static final BigDecimal SCONTO_OVER = new BigDecimal ("0.4");
-	static final BigDecimal SCONTO_UNDER = new BigDecimal ("0.2");
+	static final BigDecimal SCONTO_OVER = new BigDecimal ("0.6");
+	static final BigDecimal SCONTO_UNDER = new BigDecimal ("0.8");
 	
 	///ATTRIBUTI///
 	
@@ -19,12 +19,25 @@ public class Biglietto {
 	
 	public Biglietto(int km, int age) throws Exception {
 	
-		if(isValidKm() && isValidAge()) {
-			this.km = km;
-			this.age = age;
-		} else {
+		this.km = km;
+		this.age = age;
+		
+		if(!isValidAge() || !isValidKm()) {
 			throw new Exception("Inserisci un valore valido");
 		}
+		
+//		if(isValidKm() && isValidAge()) {
+//			this.km = km;
+//			this.age = age;
+//		} else {
+//			throw new Exception("Inserisci un valore valido");
+//		}
+		
+//		do {
+//			this.km = km;
+//			this.age = age;
+//		} while (isValidKm() && isValidAge());
+					
 	}
 
 	
@@ -61,7 +74,7 @@ public class Biglietto {
 		}
 	}
 	
-	private BigDecimal calcolaPrezzo() {
+	public BigDecimal calcolaPrezzo() {
 		return calcolaSconto().multiply(BigDecimal.valueOf(km));
 	}
 }

@@ -8,13 +8,17 @@ public class Main {
 		
 		Scanner scanner = new Scanner(System.in);
 		int age, km;
-		System.out.println("How many kilometers do you want to do?\n km:");
-		km = scanner.nextInt();
-		System.out.println("\nHow old are you?\n Age:");
-		age = scanner.nextInt();
 		
+
 		try {
+			System.out.println("Quanti km devi percorrere?");
+			km = scanner.nextInt();
+			System.out.println("La tua età?");
+			age = scanner.nextInt();
+			
 			Biglietto biglietto = new Biglietto(km, age);
+			System.out.println(biglietto.calcolaPrezzo());
+		
 		} catch(Exception e) {
 			System.out.println("Error, inserisci un nuovo input");
 		}
